@@ -1,0 +1,9 @@
+export default function Home() {
+    return (
+        <main style={{ padding: "20px" }}>
+            <h1>E-Commerce Dashboard</h1>
+            <p>Home page placeholder</p>
+        </main>
+
+    );
+}
