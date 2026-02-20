@@ -10,3 +10,13 @@
 .bg-white {
     background-color: #fff;
 }
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@utility animate-shimmer {
+  animation: shimmer 1.4s infinite;
+}
