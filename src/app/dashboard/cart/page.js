@@ -3,6 +3,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, increaseQty, decreaseQty } from "@/store/cartSlice";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -22,12 +23,12 @@ export default function CartPage() {
         <p className="text-zinc-400 text-sm max-w-xs">
           Looks like you haven't added anything yet. Start exploring our collection.
         </p>
-        <a
+        <Link
           href="/dashboard/products"
           className="mt-2 inline-block bg-zinc-900 text-white text-sm px-6 py-2.5 rounded-full hover:bg-zinc-700 transition-all duration-200"
         >
           Browse Products
-        </a>
+        </Link>
       </div>
     );
   }
@@ -47,7 +48,6 @@ export default function CartPage() {
             key={item.id}
             className="group flex gap-5 bg-white border border-zinc-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200"
           >
-            {/* Image */}
             <div className="relative w-24 h-24 flex-shrink-0 bg-zinc-50 rounded-xl overflow-hidden">
               <Image
                 src={item.image}
@@ -58,7 +58,6 @@ export default function CartPage() {
               />
             </div>
 
-            {/* Details */}
             <div className="flex-1 min-w-0">
               <div className="flex justify-between items-start gap-2">
                 <h3 className="text-sm font-semibold text-zinc-800 line-clamp-2 leading-snug">
@@ -76,7 +75,6 @@ export default function CartPage() {
               <p className="text-amber-600 font-semibold text-sm mt-1">₹{item.price}</p>
 
               <div className="flex items-center justify-between mt-3">
-                {/* Qty Controls */}
                 <div className="flex items-center gap-1 bg-zinc-50 border border-zinc-200 rounded-full px-1 py-1">
                   <button
                     onClick={() => dispatch(decreaseQty(item.id))}
@@ -94,8 +92,6 @@ export default function CartPage() {
                     +
                   </button>
                 </div>
-
-                {/* Line total */}
                 <span className="text-sm font-semibold text-zinc-700">
                   ₹{(item.price * item.quantity).toFixed(2)}
                 </span>
@@ -121,9 +117,14 @@ export default function CartPage() {
           </span>
           <span className="text-2xl font-bold text-amber-400">₹{total.toFixed(2)}</span>
         </div>
-        <button className="w-full bg-amber-500 hover:bg-amber-400 text-zinc-900 font-semibold py-3 rounded-xl transition-all duration-200 cursor-pointer">
-          Proceed to Checkout
-        </button>
+
+        {/* ← Only change from previous version: button → Link */}
+        <Link
+          href="/dashboard/checkout"
+          className="w-full block text-center bg-amber-500 hover:bg-amber-400 text-zinc-900 font-semibold py-3 rounded-xl transition-all duration-200 cursor-pointer"
+        >
+          Proceed to Checkout →
+        </Link>
       </div>
     </div>
   );
