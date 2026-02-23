@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toINR } from "@/utility/currency";
 
 const inputClass =
   "w-full px-4 py-3 bg-white border border-zinc-200 rounded-xl text-sm text-zinc-900 placeholder-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent transition";
@@ -231,7 +232,7 @@ export default function CheckoutPage() {
               </>
             ) : (
               <>
-                Place Order · ₹{total.toFixed(2)}
+                Place Order · ₹{toINR(total)}
               </>
             )}
           </button>
@@ -260,7 +261,7 @@ export default function CheckoutPage() {
                     <p className="text-xs font-semibold text-zinc-700 line-clamp-2 leading-snug">{item.title}</p>
                   </div>
                   <span className="text-sm font-semibold text-zinc-800 flex-shrink-0">
-                    ₹{(item.price * item.quantity).toFixed(2)}
+                    ₹{toINR(item.price * item.quantity)}
                   </span>
                 </div>
               ))}
@@ -269,7 +270,7 @@ export default function CheckoutPage() {
             <div className="border-t border-zinc-100 mt-5 pt-4 space-y-2">
               <div className="flex justify-between text-sm text-zinc-500">
                 <span>Subtotal</span>
-                <span>₹{total.toFixed(2)}</span>
+                <span>₹{toINR(total)}</span>
               </div>
               <div className="flex justify-between text-sm text-zinc-500">
                 <span>Shipping</span>
@@ -285,7 +286,7 @@ export default function CheckoutPage() {
               <span className="font-semibold text-zinc-900" style={{ fontFamily: "'DM Serif Display', serif" }}>
                 Total
               </span>
-              <span className="text-xl font-bold text-amber-500">₹{total.toFixed(2)}</span>
+              <span className="text-xl font-bold text-amber-500">₹{toINR(total)}</span>
             </div>
           </div>
         </div>

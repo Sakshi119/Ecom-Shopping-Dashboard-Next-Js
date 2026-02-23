@@ -9,6 +9,7 @@ import { selectFilteredProducts } from "@/selectors/productSelectors";
 import Link from "next/link";
 import CategoryFilter from "@/components/filters/CategoryFilter";
 import SortFilter from "@/components/filters/SortFilter";
+import { toINR } from "@/utility/currency";
 
 export default function ProductsPage() {
   const products = useSelector(selectFilteredProducts);
@@ -112,7 +113,7 @@ export default function ProductsPage() {
               {/* Footer */}
               <div className="flex items-center justify-between mt-auto pt-3 border-t border-zinc-50">
                 <p className="text-zinc-900 font-bold text-base">
-                  ₹{product.price}
+                  ₹{toINR(product.price)}
                 </p>
                 <div className="flex items-center gap-1 text-xs text-zinc-400">
                   <span className="text-amber-400">★</span>

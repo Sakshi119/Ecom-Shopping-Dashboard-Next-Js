@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, increaseQty, decreaseQty } from "@/store/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
+import { toINR } from "@/utility/currency";
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ export default function CartPage() {
                 </button>
               </div>
 
-              <p className="text-amber-600 font-semibold text-sm mt-1">₹{item.price}</p>
+              <p className="text-amber-600 font-semibold text-sm mt-1">₹{toINR(item.price)}</p>
 
               <div className="flex items-center justify-between mt-3">
                 <div className="flex items-center gap-1 bg-zinc-50 border border-zinc-200 rounded-full px-1 py-1">
@@ -93,7 +94,7 @@ export default function CartPage() {
                   </button>
                 </div>
                 <span className="text-sm font-semibold text-zinc-700">
-                  ₹{(item.price * item.quantity).toFixed(2)}
+                  ₹{toINR(item.price * item.quantity)}
                 </span>
               </div>
             </div>
@@ -105,7 +106,7 @@ export default function CartPage() {
       <div className="mt-8 bg-zinc-900 text-white rounded-2xl p-6">
         <div className="flex justify-between items-center mb-4">
           <span className="text-zinc-400 text-sm">Subtotal</span>
-          <span className="font-semibold">₹{total.toFixed(2)}</span>
+          <span className="font-semibold">₹{toINR(total)}</span>
         </div>
         <div className="flex justify-between items-center mb-6">
           <span className="text-zinc-400 text-sm">Shipping</span>
@@ -115,7 +116,7 @@ export default function CartPage() {
           <span className="font-semibold text-lg" style={{ fontFamily: "'DM Serif Display', serif" }}>
             Total
           </span>
-          <span className="text-2xl font-bold text-amber-400">₹{total.toFixed(2)}</span>
+          <span className="text-2xl font-bold text-amber-400">₹{toINR(total)}</span>
         </div>
 
         {/* ← Only change from previous version: button → Link */}

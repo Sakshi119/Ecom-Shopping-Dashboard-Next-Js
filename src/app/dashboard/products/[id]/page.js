@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { useParams } from "next/navigation"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCart } from "@/store/cartSlice"
+import { toINR } from "@/utility/currency"
 
 function StarRating({ rate }) {
   return (
@@ -88,7 +89,7 @@ export default function ProductDetailsPage() {
           {/* Price */}
           <div className="flex items-baseline gap-2 mb-6">
             <span className="text-3xl font-bold text-zinc-900">
-              ₹{selectedProduct.price}
+              ₹{toINR(selectedProduct.price)}
             </span>
           </div>
 
